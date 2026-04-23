@@ -1,0 +1,12 @@
+# 核心业务
+openai>=2.31.0
+pandas>=3.0.2
+pymongo>=4.16.0
+PyYAML>=6.0.3
+openpyxl>=3.1.5
+
+# 网络与 LLM 辅助
+httpx>=0.28.1
+
+# 文档展示 (如果你要用 MkDocs)
+mkdocs-material>=9.7.6

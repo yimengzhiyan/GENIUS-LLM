@@ -1,0 +1,49 @@
+# =================================================================
+# GENIUS-LLM 上传github忽略清单
+# =================================================================
+
+# --- 1. 敏感信息与安全 (核心防线) ---
+.env
+*.env
+
+# --- 2. Python 编译与临时文件 (保持仓库整洁) ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- 3. 虚拟环境与 IDE 设置 (VS Code 特有) ---
+.vscode/
+.history/
+*.code-workspace
+venv/
+.venv/
+env/
+ENV/
+# --- 4. 运行产物与大数据 (不污染审稿人环境) ---
+# 审稿人应该在自己环境下运行产生这些文件，而不是直接下载你的
+logs/*.log
+predict_results/
+src/data/yourdata_process_output/
+.ipynb_checkpoints/
+site/
+# --- 5. 系统垃圾文件 ---
+.DS_Store
+Thumbs.db
+
