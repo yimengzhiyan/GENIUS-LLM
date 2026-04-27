@@ -27,7 +27,9 @@ theme:
     logo: material/dna # 或者 material/molecule-science
  # favicon: assets/favicon.png #在 docs/ 文件夹下创建一个 assets 文件夹，并放一张名为 favicon.png 的小图标。
 
-
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -41,6 +43,8 @@ markdown_extensions:
   - pymdownx.details # 开启折叠面板（适合放长代码，不占空间）
   - pymdownx.superfences # 允许在列表里嵌套代码块
   - pymdownx.magiclink   # 自动把 URL 变成可点击链接
+  - pymdownx.arithmatex:
+      generic: true
   - attr_list       # 允许给 Markdown 元素加 CSS 样式
 
 nav:

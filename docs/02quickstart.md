@@ -12,8 +12,7 @@ Use `git` to clone the repository directly from GitHub. This ensures you have th
 
 ```bash
 # Clone the repository
-git clone [https://github.com/yimengzhiyan/GENIUS-LLM.git](https://github.com/yimengzhiyan/GENIUS-LLM.git)
-
+git clone https://github.com/ZhengJieBioinformatics/GENIUS-LLM.git
 # Enter the project directory
 cd GENIUS-LLM
 ```
@@ -32,18 +31,18 @@ model:
 ## 3. The Three-Step Workflow
 GENIUS-LLM simplifies complex bioinformatics pipelines into three standardized commands.
 
-Step 1: Import Knowledge Base
-First, populate your local MongoDB with gene annotation data.
-```bash
-genius-import --input ./data/example_annotations.csv
 
-```
-Step 2: Pre-process Raw Data
+Step 1: Pre-process Raw Data
 Clean and format your input data for LLM compatibility.
 ```bash
-genius-process --input ./data/raw_samples.xlsx --output ./data/cleaned_data.csv
+genius-process 
 ```
+Step 2: Import Knowledge Base
+First, populate your local MongoDB with gene annotation data.
+```bash
+genius-import 
 
+```
 Step 3: Execute Prediction
 Run the intelligent prediction engine to infer gene functions.
 ```bash

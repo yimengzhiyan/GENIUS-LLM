@@ -1,4 +1,4 @@
-# 📊 Compatibility Matrix & LLM Support
+# 📊 LLM Support
 
 Reviewer #4 noted the use of the OpenAI client in our codebase. We would like to clarify that **GENIUS-LLM** adopts a **Protocol-Oriented Architecture**. We utilize the OpenAI Python library not as a provider-specific lock-in, but as a **universal adapter** for the industry-standard completion protocol.
 

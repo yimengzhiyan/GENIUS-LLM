@@ -50,6 +50,22 @@ pip install -r requirements.txt
 
 ## Quick Start
 GENIUS-LLM simplifies complex bioinformatics pipelines into three standardized commands:
+Step 1: Pre-process Raw Data
+Clean and format your input data for LLM compatibility.
+```bash
+genius-process 
+```
+Step 2: Import Knowledge Base
+First, populate your local MongoDB with gene annotation data.
+```bash
+genius-import 
+
+```
+Step 3: Execute Prediction
+Run the intelligent prediction engine to infer gene functions.
+```bash
+genius-predict
+```
 
 注意导入数据的格式要符合要求：
 1. blast、Tissue、KEGG、GO的输入要为csv或txt格式。
