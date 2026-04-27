@@ -25,7 +25,7 @@ The following table explicitly lists the models verified with the current releas
 Our `src/model/llm_model.py` is designed with **zero hardcoded endpoints**. The internal logic treats the LLM as a black-box service defined by three parameters in the configuration:
 
 1. **`api_key`**: User-provided credential.
-2. **`url`**: The entry point for the API (e.g., `https://api.deepseek.com/v1`).
+2. **`url`**: The entry point for the API (e.g. `https://api.deepseek.com/v1` or `https://api.openai.com/v1` or `anyother API endpoints you want to use`). 
 3. **`model`**: The specific model identifier.
 
 ### Why use the `openai` library?

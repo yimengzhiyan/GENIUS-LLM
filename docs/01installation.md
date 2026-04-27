@@ -9,7 +9,7 @@ This guide provides step-by-step instructions for setting up **GENIUS-LLM**. We 
 Before starting, please ensure your system meets the following requirements to ensure stability:
 
 * **Operating System**: Linux (Ubuntu 20.04+, CentOS 7+), macOS, or Windows 10/11.
-* **Python Version**: 3.8, 3.9, or 3.10 (Tested for stability with asynchronous LLM calls).
+* **Python Version**: 3.9, 3.10, or 3.12 (Tested for stability with asynchronous LLM calls).
 * **Database**: **MongoDB** (v4.4 or higher) must be available as the backend for gene annotation storage.
 
 ---
@@ -47,29 +47,33 @@ Find out packages that lead to failures, then create a new requirements.txt of t
 ```
 pip install -r requirements.txt
 ```
-## 4. 数据库设置与初始化
-GENIUS-LLM 利用 MongoDB 进行高速基因数据检索。服务必须处于激活状态，才能运行预测。
+## 4. Database Setup & Initialization
+GENIUS-LLM utilizes **MongoDB** for high-speed genomic data retrieval. The MongoDB service must be active before running any predictions.
 
-🔹 Linux（systemd）：
-
-1.对于拥有 root 权限（sudo）的用户
-```
+🔹 For Linux Users (systemd):
+Option 1: Users with Root/Sudo Privileges
+```bash
 sudo systemctl start mongod
 # Verify status
 sudo systemctl status mongod
 ```
 
-2.对于没有 root 权限的用户
-```
+Option 2: Users without Root Privileges (Local Instance)
+```bash
 # Create a local data directory
 mkdir -p ~/mongodb_data
 # Launch MongoDB locally on the default port
 mongod --dbpath ~/mongodb_data --port 27017 --fork --logpath ~/mongodb_data/mongodb.log
 ```
-🔹 对于Windows的用户：
-win+R ，输入services.msc，右键启动MongoDB Server (MongoDB)。
+🔹 For Windows Users:
+
+1. Press **Win + R**, type **services.msc**, and hit **Enter**.
+
+2. Locate **MongoDB Server (MongoDB)** in the list.
+
+3. Right-click it and select **Start**.
 
 
-"Everything set? Move to Quick Start Guide to run your first gene prediction!"
+"Everything set? Move to **Quick Start Guide** to run your first gene prediction!"
 
 

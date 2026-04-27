@@ -57,11 +57,27 @@ Run the intelligent prediction engine to infer gene functions.
 ```bash
 genius-predict
 ```
+### Data Format Requirements
+
+Please ensure that all input data files strictly adhere to the following format requirements to ensure successful processing and database ingestion:
+
+| Data Category | Supported File Formats | Description |
+| :--- | :--- | :--- |
+| **BLAST** | `.csv`, `.txt` | Sequence similarity and alignment results. |
+| **Tissue (Expression)** | `.csv`, `.txt` | Tissue-specific gene expression profiles (e.g., TPM). |
+| **KEGG** | `.csv`, `.txt` | Pathway enrichment and functional descriptions. |
+| **GO** | `.csv`, `.txt` | Gene Ontology terms and functional annotations. |
+| **Multi-gene Data** | `.xlsx` | Homologous gene mapping and multi-gene datasets. |
+| **TWAS** | `.xlsx` | Transcriptome-Wide Association Study results. |
+
+> **⚠️ Important**: 
+> * For **CSV/TXT** files, ensure consistent delimiters (comma or tab) are used. 
+> * For **XLSX** files, ensure the data is located in the first sheet unless otherwise specified in the configuration.
 
 ## 4. Expected Output
 After running genius-predict, you should see logs indicating the progress. The final results will be saved in the directory defined in your config (default: predict_results/).
 
-Sample Log Output(以deepseek输出结果为例):
+## 5. Sample Log Output (DeepSeek-V3 Example)
 ```Plaintext
 --- GENIUS-LLM Prediction System ---
 2026-04-23 18:51:42,984 - INFO - Starting prediction for Gene ID: AT1G03000

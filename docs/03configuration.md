@@ -20,14 +20,14 @@ GENIUS-LLM/
 ## 2. YAML Field Explanations
 Edit config/data_config.yaml to suit your research:
 
-### Model Settings:
+### ·Model Settings:
 ```yaml
 api_key: Your LLM service provider key.
 url: API endpoint (Default: DeepSeek).
 model: Model ID (e.g., deepseek-chat, gpt-4o).
 ```
 
-### Mongodb Settings:
+### ·Mongodb Settings:
 
 ```yaml
 mongodb:
@@ -35,7 +35,7 @@ mongodb:
   database: "arabidopsis_gene_db" # Database names for corresponding species (need to be changed)
 ```
 
-### Data Paths(process_data):
+### ·Data Paths(process_data):
 You can define multiple data sources here. The type determines which Processor (Blast/TWAS) is used.
 ```yaml
 data_paths:
@@ -46,7 +46,7 @@ data_paths:
     input: "data/yourdata_process/02cultivar"
     output: "data/yourdata_process_output/coexpression_output.txt"
 ```
-### Data Paths(import_data):
+### ·Data Paths(import_data):
 ```yaml
 data_imports:
   blast:
@@ -56,19 +56,3 @@ data_imports:
     input_path: "data/yourdata_process_output/coexpression_output.txt"
     collection: "gene_coexpression"
 ```
-## Data Format Requirements
-
-Please ensure that all input data files strictly adhere to the following format requirements to ensure successful processing and database ingestion:
-
-| Data Category | Supported File Formats | Description |
-| :--- | :--- | :--- |
-| **BLAST** | `.csv`, `.txt` | Sequence similarity and alignment results. |
-| **Tissue (Expression)** | `.csv`, `.txt` | Tissue-specific gene expression profiles (e.g., TPM). |
-| **KEGG** | `.csv`, `.txt` | Pathway enrichment and functional descriptions. |
-| **GO** | `.csv`, `.txt` | Gene Ontology terms and functional annotations. |
-| **Multi-gene Data** | `.xlsx` | Homologous gene mapping and multi-gene datasets. |
-| **TWAS** | `.xlsx` | Transcriptome-Wide Association Study results. |
-
-> **⚠️ Important**: 
-> * For **CSV/TXT** files, ensure consistent delimiters (comma or tab) are used. 
-> * For **XLSX** files, ensure the data is located in the first sheet unless otherwise specified in the configuration.
