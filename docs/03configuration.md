@@ -1,6 +1,6 @@
 # ⚙️ Configuration Guide
 
-GENIUS-LLM uses a centralized YAML configuration system to manage paths, models, and processing logic.
+*GENIUS-LLM* uses a centralized YAML configuration system to manage paths, models, and processing logic.
 
 ## 1. Project Structure
 To ensure the automated path detection (GPS Logic) works correctly, please maintain the following structure:
@@ -9,7 +9,11 @@ GENIUS-LLM/
 ├── config/
 │   └── data_config.yaml    # Main configuration
 ├── data/                   # Input and processed data
+|   ├── yourdata_process/
+|   └── yourdata_process_output/
 ├── src/                    # Source code
+├── scripts/                # main Scripts
+├── requirements.txt
 └── setup.py
 ```
 

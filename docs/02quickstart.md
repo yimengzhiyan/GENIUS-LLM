@@ -1,20 +1,30 @@
-这是为了**回应审稿人 #5 关于 502 错误**的质疑（教他们如何在本地跑起来）：
-
 # 🚀 Quick Start Guide
 
 This guide will walk you through the standard workflow of **GENIUS-LLM**, from downloading the source code to generating your first gene function prediction.
 
 ---
-
 ## 1. Download the Project
 
-Use `git` to clone the repository directly from GitHub. This ensures you have the latest version of the framework.
-
-```bash
-# Clone the repository
+To install **GENIUS-LLM**, follow these steps:
+From Source:
+```
+# 1. Clone the repository
 git clone https://github.com/ZhengJieBioinformatics/GENIUS-LLM.git
-# Enter the project directory
 cd GENIUS-LLM
+
+# 2. Create a clean environment (Optional but highly recommended)
+conda create -n genius_llm python=3.12 -y
+conda activate genius_llm
+
+# 3. Install dependencies first to avoid failures
+pip install -r requirements.txt
+
+# 4. Install GENIUS-LLM in editable mode
+pip install -e .
+```
+Find out packages that lead to failures, then create a new requirements.txt of them and run:
+```
+pip install -r requirements.txt
 ```
 
 ## 2. Fast Configuration
@@ -23,14 +33,13 @@ Before running, you must provide your API credentials. GENIUS-LLM is designed to
 Edit config/data_config.yaml:
 ```
 model:
-    url: https://api.openai.com/v1 # 这里展示API 的基准地址，你可根据自己的情况修改
+    url: https://api.openai.com/v1 # 这里展示API 的基准地址，你可根据自己的LLM情况自行修改
     api_key: sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # replace your api_key
     model: The model you want to use # 你使用的模型名称
 ```
 
 ## 3. The Three-Step Workflow
 GENIUS-LLM simplifies complex bioinformatics pipelines into three standardized commands.
-
 
 Step 1: Pre-process Raw Data
 Clean and format your input data for LLM compatibility.
