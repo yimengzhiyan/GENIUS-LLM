@@ -29,11 +29,23 @@ conda activate genius_llm
 
 To install **GENIUS-LLM**, follow these steps:
 ```
-# Navigate to the project root
-cd 20260410GENIUS-LLM
+# 1. Clone the repository
+git clone https://github.com/ZhengJieBioinformatics/GENIUS-LLM.git
+cd GENIUS-LLM
 
-# Install in editable mode with all dependencies
+# 2. Create a clean environment (Optional but highly recommended)
+conda create -n genius_llm python=3.12 -y
+conda activate genius_llm
+
+# 3. Install dependencies first to avoid failures
+pip install -r requirements.txt
+
+# 4. Install GENIUS-LLM in editable mode
 pip install -e .
+```
+Find out packages that lead to failures, then create a new requirements.txt of them and run:
+```
+pip install -r requirements.txt
 ```
 ## 4. 数据库设置与初始化
 GENIUS-LLM 利用 MongoDB 进行高速基因数据检索。服务必须处于激活状态，才能运行预测。

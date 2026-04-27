@@ -2,14 +2,11 @@
   <h1>GENIUS-LLM</h1>
   <p><b>This is the official github repository for GENIUS-LLM: An Automated Gene Function Prediction Framework Powered by Large Language Models</b></p>
 
-  <a href="https://github.com/yimengzhiyan/GENIUS-LLM/issues">
-    <img src="https://img.shields.io/github/issues/yimengzhiyan/GENIUS-LLM?color=teal" alt="Issues">
+  <a href="">
+    <img src="" alt="preprint">
   </a>
-  <a href="https://yimengzhiyan.github.io/GENIUS-LLM/">
-    <img src="https://img.shields.io/badge/docs-latest-blue" alt="Documentation">
-  </a>
-  <a href="https://github.com/yimengzhiyan/GENIUS-LLM/stargazers">
-    <img src="https://img.shields.io/github/stars/yimengzhiyan/GENIUS-LLM?color=indigo" alt="Stars">
+  <a href="https://ZhengJieBioinformatics.github.io/GENIUS-LLM/">
+    <img src="https://img.shields.io/badge/docs-latest-blue" alt="docs">
   </a>
 </div>
 
@@ -27,15 +24,28 @@ To address these issues, we introduce **GENIUS-LLM**, a standardized framework d
 
 ## Installation
 
-### From Source
 We strongly recommend using a Conda virtual environment to ensure dependency stability and reproducibility in scientific computing.
 
-```bash
-# Clone the repository
-git clone [https://github.com/ZhengJieBioinformatics/GENIUS-LLM.git]
+To install **GENIUS-LLM**, follow these steps:
+From Source:
+```
+# 1. Clone the repository
+git clone https://github.com/ZhengJieBioinformatics/GENIUS-LLM.git
+cd GENIUS-LLM
 
-# Install in editable mode (registers CLI commands like 'genius-predict')
+# 2. Create a clean environment (Optional but highly recommended)
+conda create -n genius_llm python=3.12 -y
+conda activate genius_llm
+
+# 3. Install dependencies first to avoid failures
+pip install -r requirements.txt
+
+# 4. Install GENIUS-LLM in editable mode
 pip install -e .
+```
+Find out packages that lead to failures, then create a new requirements.txt of them and run:
+```
+pip install -r requirements.txt
 ```
 
 ## Quick Start

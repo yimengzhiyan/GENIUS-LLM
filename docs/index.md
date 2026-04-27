@@ -1,17 +1,20 @@
-# Welcome to MkDocs
+## Installation
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
-## Commands
+We strongly recommend using a Conda virtual environment to ensure dependency stability and reproducibility in scientific computing.
+From Source：
+```bash
+# Clone the repository
+git clone [https://github.com/ZhengJieBioinformatics/GENIUS-LLM.git]
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+# Install in editable mode (registers CLI commands like 'genius-predict')
+pip install -e .
+```
 
-## Project layout
+## Quick Start
+GENIUS-LLM simplifies complex bioinformatics pipelines into three standardized commands:
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+注意导入数据的格式要符合要求：
+1. blast、Tissue、KEGG、GO的输入要为csv或txt格式。
+2. multi_gene_data、TWAS的输入要为xlsx格式。
+
