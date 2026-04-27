@@ -41,6 +41,7 @@ ENV/
 logs/*.log
 predict_results/
 src/data/yourdata_process_output/
+data/yourdata_process_output/
 .ipynb_checkpoints/
 site/
 # --- 5. 系统垃圾文件 ---
