@@ -1,4 +1,4 @@
-<div align="center">
+<div align="left">
   <h1>GENIUS-LLM</h1>
   <p><b>This is the official github repository for GENIUS-LLM: An Automated Gene Function Prediction Framework Powered by Large Language Models</b></p>
 
