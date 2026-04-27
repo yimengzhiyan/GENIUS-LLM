@@ -18,7 +18,7 @@ The functional annotation of genomic elements remains a cornerstone of bioinform
 
 To address these issues, we introduce **GENIUS-LLM**, a standardized framework designed to facilitate the integration and application of LLMs in gene function prediction. GENIUS-LLM provides a cohesive, protocol-oriented interface, enabling researchers to access various LLMs (e.g., GPT-4o, DeepSeek, or local Llama models) regardless of architectural differences or coding standards. With standardized APIs and comprehensive documentation, GENIUS-LLM streamlines model switching and comparative analyses, while incorporating best practices for consistent genomic evaluation.
 
-
+![Figure: Technical workflow of GENIUS-LLM platform. The platform integrates multi-omics data through large language model, uses prompt engineering and related techniques to generate chain-of-thought analysis, and provides feedback correction capabilities to assist researchers in target gene selection.](docs/images/introduction.png)
 
 ---
 

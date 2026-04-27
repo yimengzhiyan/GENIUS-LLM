@@ -1,20 +1,10 @@
-## Installation
+## Introduction
+The functional annotation of genomic elements remains a cornerstone of bioinformatics. However, the rapidly evolving landscape of Large Language Models (LLMs) introduces significant challenges stemming from API heterogeneity and a lack of workflow standardization. 
 
+![Figure: Technical workflow of GENIUS-LLM platform. The platform integrates multi-omics data through large language model, uses prompt engineering and related techniques to generate chain-of-thought analysis, and provides feedback correction capabilities to assist researchers in target gene selection.](docs/images/introduction.png)
 
-We strongly recommend using a Conda virtual environment to ensure dependency stability and reproducibility in scientific computing.
-From Source：
-```bash
-# Clone the repository
-git clone [https://github.com/ZhengJieBioinformatics/GENIUS-LLM.git]
-
-# Install in editable mode (registers CLI commands like 'genius-predict')
-pip install -e .
-```
-
-## Quick Start
-GENIUS-LLM simplifies complex bioinformatics pipelines into three standardized commands:
-
-注意导入数据的格式要符合要求：
-1. blast、Tissue、KEGG、GO的输入要为csv或txt格式。
-2. multi_gene_data、TWAS的输入要为xlsx格式。
-
+To address the limitations of existing methods and better utilize large language models (LLMs) for gene function research, we developed GENIUS-LLM (Gene function Inference through Integrated multi-omics data with Large language Models).
+GENIUS-LLM is a one-stop gene function inference platform that systematically integrates multi-omics data through specialized analysis chains. Inspired by Retrieval-Augmented Generation (RAG) technology, we organize multi-omics data into structured components stored in databases. These data are indexed and integrated in text format based on user queries, providing targeted supplementary information about target genes. This design effectively avoids the "information overload" issue in large models while simultaneously addressing the hallucination problem, enabling LLMs to integrate multiple omics datasets effectively.
+The system employs prompt engineering and chain-of-thought (CoT) reasoning to build analysis chains. It supports user feedback for result correction and data supplementation after the initial dialogue to optimize inference results. By processing user input as queries, the system retrieves relevant biological information to generate comprehensive functional inferences.
+GENIUS-LLM serves as a comprehensive platform for molecular biology researchers—particularly those without extensive bioinformatics backgrounds—to screen target genes and develop multidimensional research strategies. We emphasize that the output of GENIUS-LLM should be interpreted as a biologically grounded hypothesis supported by explicit evidence, rather than a definitive conclusion. As GENIUS-LLM is not a statistical locus-mapping method, it is not designed for novel locus discovery; instead, it assists researchers in assembling heterogeneous evidence into a coherent functional direction to guide downstream experimental design.
+The framework utilizes LLMs via API calls (specifically GPT-4o in this study). As LLM technology evolves, users can employ more advanced models to improve inference effectiveness. Furthermore, the underlying databases can be replaced with custom research data to better adapt to specific research goals.
