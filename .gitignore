@@ -40,10 +40,13 @@ ENV/
 # 审稿人应该在自己环境下运行产生这些文件，而不是直接下载你的
 logs/*.log
 predict_results/
+my-docs-test/
 src/data/yourdata_process_output/
 data/yourdata_process_output/
+GENIUS-LLM-SYSTEM/
 .ipynb_checkpoints/
 site/
+Q_and_A.md
 # --- 5. 系统垃圾文件 ---
 .DS_Store
 Thumbs.db

@@ -1,28 +1,6 @@
-20260410GENIUS-LLM/ 
-├── docs/                    # MkDocs 说明文档          √
-├── scripts/                 # 命令行脚本入口           √
-│   ├── process_data.py      # 已注入 GPS 逻辑
-│   ├── import_data.py       # 已注入 GPS 逻辑
-│   └── predict.py           # 已注入 GPS 逻辑
-├── src/                     # 核心代码包               √
-│   ├── model/
-│   ├── prompt/
-│   ├── utils/
-│   │   └── config_loader.py # 核心 GPS 逻辑所在地
-│   └── data/                # 存放默认数据
-├── config/                  # 配置文件                 √
-│   └── data_config.yaml
-├── MANIFEST.in              # 打包行李清单（新增）      √
-├── mkdocs.yml               # 文档网站配置（新增）
-├── setup.py                 # 安装与命令注册配置        √
-├── README.md                # 仓库主页                 √
-└── .gitignore               # 忽略垃圾文件             √
-
-至少包括上述内容
-
 <div align="center">
   <h1>GENIUS-LLM</h1>
-  <p><b>An Automated Gene Function Prediction Framework Powered by Large Language Models</b></p>
+  <p><b>This is the official github repository for GENIUS-LLM: An Automated Gene Function Prediction Framework Powered by Large Language Models</b></p>
 
   <a href="https://github.com/yimengzhiyan/GENIUS-LLM/issues">
     <img src="https://img.shields.io/github/issues/yimengzhiyan/GENIUS-LLM?color=teal" alt="Issues">
@@ -66,3 +44,4 @@ GENIUS-LLM simplifies complex bioinformatics pipelines into three standardized c
 注意导入数据的格式要符合要求：
 1. blast、Tissue、KEGG、GO的输入要为csv或txt格式。
 2. multi_gene_data、TWAS的输入要为xlsx格式。
+
