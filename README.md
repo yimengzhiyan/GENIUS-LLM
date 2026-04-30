@@ -14,11 +14,19 @@
 
 ## Introduction
 
-The functional annotation of genomic elements remains a cornerstone of bioinformatics. However, the rapidly evolving landscape of Large Language Models (LLMs) introduces significant challenges stemming from API heterogeneity and a lack of workflow standardization. 
+### 🧬 GENIUS-LLM
 
-To address these issues, we introduce **GENIUS-LLM**, a standardized framework designed to facilitate the integration and application of LLMs in gene function prediction. GENIUS-LLM provides a cohesive, protocol-oriented interface, enabling researchers to access various LLMs (e.g., GPT-4o, DeepSeek, or local Llama models) regardless of architectural differences or coding standards. With standardized APIs and comprehensive documentation, GENIUS-LLM streamlines model switching and comparative analyses, while incorporating best practices for consistent genomic evaluation.
+gene function inference through integrated multi-omics data with large language models
 
-![Figure: Technical workflow of GENIUS-LLM platform. The platform integrates multi-omics data through large language model, uses prompt engineering and related techniques to generate chain-of-thought analysis, and provides feedback correction capabilities to assist researchers in target gene selection.](docs/images/introduction.png)
+### 🌟 Overview
+
+Gene function **inference** is critical for modern agricultural research and crop improvement. While deep learning has become the dominant computational approach, it still faces limitations in multi-omics data integration and interpretability.
+
+![Figure: Technical workflow of GENIUS-LLM platform. The platform integrates multi-omics data through large language models, uses prompt engineering and related techniques to perform structured evidence synthesis, and provides feedback correction capabilities to assist researchers in target gene selection.](./images/introduction.png)
+GENIUS-LLM is a one-stop platform for gene function inference that integrates multi-omics data using a **Retrieval-Augmented Generation (RAG)**-inspired storage system and multi-level prompt engineering. The system transforms biological data—including **sequence similarity**, **co-expression patterns**, and **tissue-specific expression profiles**—into structured natural language descriptions.
+
+By utilizing **priority-based analysis** and **Chain-of-Thought (CoT)** prompting, **GENIUS-LLM** ensures the **accuracy** and **interpretability** of functional **inference** in cotton (Gossypium hirsutum), Arabidopsis thaliana, and rice (Oryza sativa).
+
 
 ---
 
@@ -43,10 +51,7 @@ pip install -r requirements.txt
 # 4. Install GENIUS-LLM in editable mode
 pip install -e .
 ```
-Find out packages that lead to failures, then create a new requirements.txt of them and run:
-```
-pip install -r requirements.txt
-```
+
 
 ## Quick Start
 GENIUS-LLM simplifies complex bioinformatics pipelines into three standardized commands:
@@ -67,20 +72,26 @@ Run the intelligent prediction engine to infer gene functions.
 genius-predict
 ```
 
-## Data Format Requirements
+## Data Input Format Specifications
 
-Please ensure that all input data files strictly adhere to the following format requirements to ensure successful processing and database ingestion:
+To ensure the `genius-process` script correctly parses your raw data, please prepare your files according to the required headers and formats listed below.
 
-| Data Category | Supported File Formats | Description |
-| :--- | :--- | :--- |
-| **BLAST** | `.csv`, `.txt` | Sequence similarity and alignment results. |
-| **Tissue (Expression)** | `.csv`, `.txt` | Tissue-specific gene expression profiles (e.g., TPM). |
-| **KEGG** | `.csv`, `.txt` | Pathway enrichment and functional descriptions. |
-| **GO** | `.csv`, `.txt` | Gene Ontology terms and functional annotations. |
-| **Multi-gene Data** | `.xlsx` | Homologous gene mapping and multi-gene datasets. |
-| **TWAS** | `.xlsx` | Transcriptome-Wide Association Study results. |
+| Data Type | Required Headers | File Format | Example Record |
+| :--- | :--- | :--- | :--- |
+| **BLAST** | `query`, `subject`, `similarity`, `alignment_length`, `mismatches`, `gap_openings`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score` | `TXT` (Space-sep, **No Header**) | `GeneA GeneB 85.5 200 2 0 1 200 50 250 1e-50 450` |
+| **Co-expression** | `row`, `col`, `weight` | `TXT` (Space-sep, With Header) | `GeneA GeneB 0.956789` |
+| **Expression** | `GeneId`, `Tissue_1`, `Tissue_2`, ... | `CSV` (Comma-separated) | `GeneA, 12.5, 0.0, 8.45` |
+| **GO** | `GeneID`, `GO`, `Ontology`, `Description` | `CSV` (Comma-separated) | `GeneA, GO:0008150, BP, cell growth` |
+| **KEGG** | `GeneID`, `KEGG`, `KEGG_Description` | `CSV` (Comma-separated) | `GeneA, path:ath00010, Glycolysis` |
+| **TWAS** | `GeneID`, `Phenotype`, `Stage`, `TWAS.Zscore` | `XLSX` (Must be **Sheet1**) | `GeneA, FE, Stage_1, 3.4567` |
+| **Homolog** | `GeneID`, `Homology of AtGi`, `Symbol`, `Full_name`, `Chr.`, `Start`, `End`, `Function description` | `XLSX` | `GeneA, AT1G01010, ABC1, Protein X, Chr1, 100, 500, Kinase` |
 
-> **⚠️ Important**: 
-> * For **CSV/TXT** files, ensure consistent delimiters (comma or tab) are used. 
-> * For **XLSX** files, ensure the data is located in the first sheet unless otherwise specified in the configuration.
+---
 
+### 🛠️ Processing Notes
+
+*   **BLAST Header Requirement**: The system reads BLAST files without a header (`header=None`). Ensure the first line of the file contains actual data.
+*   **Co-expression Threshold**: The processor only handles gene pairs with a `weight > 0.9` to ensure the reliability of functional inference.
+*   **Dynamic Expression Columns**: Except for the first column (`GeneId`), all subsequent columns are automatically identified as tissue names.
+*   **TWAS Phenotype Mapping**: The system includes a built-in mapping dictionary that automatically converts abbreviations (e.g., `FE`, `FS`, `FU`, `FL`) into full fiber trait descriptions.
+*   **Homology Data Completion**: If any column in the homology table is missing data, the system will automatically fill the field with `NA`.

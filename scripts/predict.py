@@ -45,7 +45,15 @@ def main():
 
     # --- 4. 执行预测逻辑 ---
     print("\n--- GENIUS-LLM Prediction System ---")
-    gene_id = "AT1G03000" # 这里后续可以改为从 sys.argv 获取
+
+    # 检查命令行是否提供了参数，如果没有，则使用默认值或提示退出
+    if len(sys.argv) > 1:
+        gene_id = sys.argv[1]
+    else:
+        # 方案 A: 给出默认值
+        gene_id = "AT1G03000" 
+        print(f"No Gene ID provided, using default: {gene_id}")
+        
     logger.info(f"Starting prediction for Gene ID: {gene_id}")
 
     # Step A: 生成 Prompt

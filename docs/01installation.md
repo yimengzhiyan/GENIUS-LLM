@@ -20,7 +20,7 @@ To avoid library version conflicts and ensure reproducibility, we strongly recom
 
 ```bash
 # Create a clean environment
-conda create -n genius_llm python=3.9 -y
+conda create -n genius_llm python=3.12 -y
 
 # Activate the environment
 conda activate genius_llm
@@ -33,14 +33,10 @@ To install **GENIUS-LLM**, follow these steps:
 git clone https://github.com/ZhengJieBioinformatics/GENIUS-LLM.git
 cd GENIUS-LLM
 
-# 2. Create a clean environment (Optional but highly recommended)
-conda create -n genius_llm python=3.12 -y
-conda activate genius_llm
-
-# 3. Install dependencies first to avoid failures
+# 2. Install dependencies first to avoid failures
 pip install -r requirements.txt
 
-# 4. Install GENIUS-LLM in editable mode
+# 3. Install GENIUS-LLM in editable mode
 pip install -e .
 ```
 Find out packages that lead to failures, then create a new requirements.txt of them and run:
@@ -49,8 +45,12 @@ pip install -r requirements.txt
 ```
 ## 4. Database Setup & Initialization
 GENIUS-LLM utilizes **MongoDB** for high-speed genomic data retrieval. The MongoDB service must be active before running any predictions.
+```bash
+conda install mongodb mongodb-shell mongodb-tools -c conda-forge -y
+```
 
 🔹 For Linux Users (systemd):
+
 Option 1: Users with Root/Sudo Privileges
 ```bash
 sudo systemctl start mongod
@@ -61,7 +61,7 @@ sudo systemctl status mongod
 Option 2: Users without Root Privileges (Local Instance)
 ```bash
 # Create a local data directory
-mkdir -p ~/mongodb_data
+mkdir mongodb_data
 # Launch MongoDB locally on the default port
 mongod --dbpath ~/mongodb_data --port 27017 --fork --logpath ~/mongodb_data/mongodb.log
 ```
