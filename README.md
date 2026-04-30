@@ -22,7 +22,7 @@ gene function inference through integrated multi-omics data with large language 
 
 Gene function **inference** is critical for modern agricultural research and crop improvement. While deep learning has become the dominant computational approach, it still faces limitations in multi-omics data integration and interpretability.
 
-![Figure: Technical workflow of GENIUS-LLM platform. The platform integrates multi-omics data through large language models, uses prompt engineering and related techniques to perform structured evidence synthesis, and provides feedback correction capabilities to assist researchers in target gene selection.](./images/introduction.png)
+![Figure: Technical workflow of GENIUS-LLM platform. The platform integrates multi-omics data through large language models, uses prompt engineering and related techniques to perform structured evidence synthesis, and provides feedback correction capabilities to assist researchers in target gene selection.](images/introduction.png)
 GENIUS-LLM is a one-stop platform for gene function inference that integrates multi-omics data using a **Retrieval-Augmented Generation (RAG)**-inspired storage system and multi-level prompt engineering. The system transforms biological data—including **sequence similarity**, **co-expression patterns**, and **tissue-specific expression profiles**—into structured natural language descriptions.
 
 By utilizing **priority-based analysis** and **Chain-of-Thought (CoT)** prompting, **GENIUS-LLM** ensures the **accuracy** and **interpretability** of functional **inference** in cotton (Gossypium hirsutum), Arabidopsis thaliana, and rice (Oryza sativa).
