@@ -36,9 +36,9 @@ cd config/data_config.yaml
 ```
 ```
 model:
-    url: https://api.openai.com/v1 # 这里展示API 的基准地址，你可根据自己的LLM情况自行修改
-    api_key: sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # replace your api_key
-    model: The model you want to use # 你使用的模型名称
+    url: https://api.openai.com/v1 # Here is the base URL for the API; you can modify it according to your specific LLM configuration.
+    api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # Replace your api_key
+    model: The model you want to use 
 ```
 ## 3. Start MongoDB
 

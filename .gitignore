@@ -1,12 +1,12 @@
 # =================================================================
-# GENIUS-LLM 上传github忽略清单
+# GENIUS-LLM GitHub Ignore List
 # =================================================================
 
-# --- 1. 敏感信息与安全 (核心防线) ---
+# --- 1. Sensitive Information & Security (Core Defense) ---
 .env
 *.env
 
-# --- 2. Python 编译与临时文件 (保持仓库整洁) ---
+# --- 2. Python Compilation & Temporary Files (Keep Repository Clean) ---
 __pycache__/
 *.py[cod]
 *$py.class
@@ -28,7 +28,7 @@ wheels/
 .installed.cfg
 *.egg
 
-# --- 3. 虚拟环境与 IDE 设置 (VS Code 特有) ---
+# --- 3. Virtual Environments & IDE Settings (VS Code Specific) ---
 .vscode/
 .history/
 *.code-workspace
@@ -36,8 +36,9 @@ venv/
 .venv/
 env/
 ENV/
-# --- 4. 运行产物与大数据 (不污染审稿人环境) ---
-# 审稿人应该在自己环境下运行产生这些文件，而不是直接下载你的
+
+# --- 4. Execution Artifacts & Large Data (Prevent Environment Pollution) ---
+# Reviewers should generate these files in their own environments rather than downloading them.
 logs/*.log
 predict_results/
 my-docs-test/
@@ -47,7 +48,7 @@ GENIUS-LLM-SYSTEM/
 .ipynb_checkpoints/
 site/
 Q_and_A.md
-# --- 5. 系统垃圾文件 ---
+
+# --- 5. System Junk Files ---
 .DS_Store
 Thumbs.db
-

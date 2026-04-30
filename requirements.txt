@@ -1,12 +1,12 @@
-# 核心业务
+# Core Logic
 openai>=2.31.0
 pandas>=3.0.2
 pymongo>=4.16.0
 PyYAML>=6.0.3
 openpyxl>=3.1.5
 
-# 网络与 LLM 辅助
+# Networking & LLM Utilities
 httpx>=0.28.1
 
-# 文档展示 (如果你要用 MkDocs)
+# Documentation (if using MkDocs)
 mkdocs-material>=9.7.6
