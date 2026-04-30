@@ -3,9 +3,27 @@
 from .base_prompt import BasePrompt
 from pymongo import MongoClient
 import yaml
+<<<<<<< HEAD
+import os
+
+# --- 核心修复：动态定位项目根目录 ---
+# 1. 获取当前文件 (gene_prompt.py) 的绝对路径
+current_file_path = os.path.abspath(__file__)
+
+# 2. 向上跳三级找到项目根目录 (gene_prompt.py -> prompt -> src -> root)
+# 确保这里跳的级数和你的目录深度一致
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(current_file_path)))
+
+# 3. 拼接 config 的绝对路径
+config_path = os.path.join(project_root, 'config', 'data_config.yaml')
+
+# 4. 使用绝对路径打开文件
+with open(config_path, 'r', encoding='utf-8') as config_file:
+=======
 
 # Read the configuration file
 with open('config/data_config.yaml', 'r') as config_file:
+>>>>>>> upstream/main
     config = yaml.safe_load(config_file)
 
 # Read MongoDB configuration from the config file

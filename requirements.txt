@@ -1,0 +1,12 @@
+# Core Logic
+openai>=2.31.0
+pandas>=3.0.2
+pymongo>=4.16.0
+PyYAML>=6.0.3
+openpyxl>=3.1.5
+
+# Networking & LLM Utilities
+httpx>=0.28.1
+
+# Documentation (if using MkDocs)
+mkdocs-material>=9.7.6

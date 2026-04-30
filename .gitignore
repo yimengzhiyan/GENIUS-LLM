@@ -1,0 +1,63 @@
+# =================================================================
+# GENIUS-LLM GitHub Ignore List
+# =================================================================
+
+# --- 1. Sensitive Information & Security (Core Defense) ---
+.env
+*.env
+
+# --- 2. Python Compilation & Temporary Files (Keep Repository Clean) ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- 3. Virtual Environments & IDE Settings (VS Code Specific) ---
+.vscode/
+.history/
+*.code-workspace
+venv/
+.venv/
+env/
+ENV/
+*.exe
+.pyc
+GENIUS_LLM/Scripts/*.exe
+GENIUS_LLM/Scripts/*.bat
+GENIUS_LLM/Scripts/Activate.ps1
+GENIUS_LLM/Scripts/activate
+GENIUS_LLM/Scripts/deactivate.bat
+GENIUS_LLM/Scripts/pip*.exe
+GENIUS_LLM/Scripts/python*.dll
+
+# --- 4. Execution Artifacts & Large Data (Prevent Environment Pollution) ---
+# Reviewers should generate these files in their own environments rather than downloading them.
+logs/*.log
+predict_results/
+my-docs-test/
+src/data/yourdata_process_output/
+data/yourdata_process_output/
+GENIUS-LLM-SYSTEM/
+.ipynb_checkpoints/
+site/
+Q_and_A.md
+
+# --- 5. System Junk Files ---
+.DS_Store
+Thumbs.db

@@ -1,160 +1,97 @@
-# GENIUS-LLM
+<div align="left">
+  <h1>GENIUS-LLM</h1>
+  <p><b>This is the official github repository for GENIUS-LLM: An Automated Gene Function Prediction Framework Powered by Large Language Models</b></p>
 
-## 1. Script Overview
-
-### Configuration
-`data_config.yaml` - In this yaml file, customize your own API, data paths, and database addresses and other configurations.
-
-### Scripts Overview
-The project is divided into four main parts:
-
-#### 1.1 User-Facing Script
-- **01process_data.py** - Processes raw data into text format
-- **02import_data.py** - Imports processed data into MongoDB
-- **03predict.py** - Users need to modify two parts before running this py in `data_config.yaml`
-
-#### 1.2 Model Module
-- **__init__.py** - Empty file for package initialization
-- **base_model.py** - Calls the model API to generate prediction results
-- **llm_model.py** - Handles interactions with the OpenAI API or others for compatibility. Modify this if using a different model
-- **model_factory.py** - Creates different model instances based on the configuration
-
-#### 1.3 Prompt Module
-- **__init__.py** - Empty file for package initialization
-- **base_prompt.py** - Generates prompts for gene prediction
-- **gene_prompt.py** - Extracts gene data from MongoDB and integrates it into comprehensive prompts
-- **prompt_factory.py** - Creates different types of prompt generators
-
-#### 1.4 Data Process
-We provide cotton data as examples.
-
-### File Structure
-```
-├── config
-│   └── data_config.yaml
-├── logs
-│   ├── import_data.log
-│   ├── predict.log
-│   └── process_data.log
-├── README.md
-├── scripts
-│   ├── 01process_data.py
-│   ├── 02import_data.py
-│   └── 03predict.py
-└── src
-    ├── data
-    │   ├── fetchers
-    │   ├── yourdata_process
-    │   └── yourdata_process_output
-    ├── fetchers
-    ├── importers
-    ├── model
-    ├── processors
-    ├── prompt
-    └── utils
-```
-
-### File Descriptions
-- **README.md** - This file
-- **data_config.yaml** - Configuration file
-- **01process_data.py** - Processes data
-- **02import_data.py** - Imports data to MongoDB
-- **03predict.py** - Calls the language model to predict genes
-- **logs/** - Stores log files
-- **data/** - Contains raw and processed data
-- **fetchers/** - Fetches 7 types of data
-- **importers/** - Imports data
-- **model/** - Interfaces with the large model API
-- **processors/** - Converts data into text
-- **prompt/** - Manages prompt engineering
+  <a href="">
+    <img src="" alt="preprint">
+  </a>
+  <a href="https://ZhengJieBioinformatics.github.io/GENIUS-LLM/">
+    <img src="https://img.shields.io/badge/docs-latest-blue" alt="docs">
+  </a>
+</div>
 
 ---
 
-## 2. Experimental Environment
+## Introduction
 
-### 2.1 MongoDB
-- db version v8.0.3
-- Build Info:
-  ```json
-  {
-    "version": "8.0.3",
-    "gitVersion": "89d97f2744a2b9851ddfb51bdf22f687562d9b06",
-    "modules": [],
-    "allocator": "tcmalloc-gperf",
-    "environment": {
-        "distmod": "windows",
-        "distarch": "x86_64",
-        "target_arch": "x86_64"
-    }
-  }
-  ```
+### 🧬 GENIUS-LLM
 
-### 2.2 MongoDB Database Tools
-- Version: 100.12.0
-- Download link: https://www.mongodb.com/try/download/database-tools
+gene function inference through integrated multi-omics data with large language models
 
-### 2.3 Required Packages
-Packages required for the experiment can be found in: `environment.yml`
-1. First activate your environment: `conda activate your_env_name`
-2. Update/install the required packages in your environment: `conda env update -f environment.yml`
+### 🌟 Overview
+
+Gene function **inference** is critical for modern agricultural research and crop improvement. While deep learning has become the dominant computational approach, it still faces limitations in multi-omics data integration and interpretability.
+
+![Figure: Technical workflow of GENIUS-LLM platform. The platform integrates multi-omics data through large language models, uses prompt engineering and related techniques to perform structured evidence synthesis, and provides feedback correction capabilities to assist researchers in target gene selection.](docs/images/introduction.png)
+GENIUS-LLM is a one-stop platform for gene function inference that integrates multi-omics data using a **Retrieval-Augmented Generation (RAG)**-inspired storage system and multi-level prompt engineering. The system transforms biological data—including **sequence similarity**, **co-expression patterns**, and **tissue-specific expression profiles**—into structured natural language descriptions.
+
+By utilizing **priority-based analysis** and **Chain-of-Thought (CoT)** prompting, **GENIUS-LLM** ensures the **accuracy** and **interpretability** of functional **inference** in cotton (Gossypium hirsutum), Arabidopsis thaliana, and rice (Oryza sativa).
+
 
 ---
 
-## 3. Gene Prediction
+## Installation
 
-### 3.1 Preparing for Data Import
-Before you begin, please make sure that:
-- Your MongoDB database is correctly installed
-- MongoDB Database Tools component is also installed (prerequisite for step 2)
-- Your environment is correctly configured
+We strongly recommend using a Conda virtual environment to ensure dependency stability and reproducibility in scientific computing.
 
-Then, create a folder for storing the corresponding species, and put your JSON and BSON formatted data into the designated folder (`your_db_path`).
-
-For example:
+To install **GENIUS-LLM**, follow these steps:
+From Source:
 ```
-mkdir "C:\Users\HZAU\Desktop\GENIUS-LLM\mongo_restore_ready\cotton_gene_db"
+# 1. Clone the repository
+git clone https://github.com/ZhengJieBioinformatics/GENIUS-LLM.git
+cd GENIUS-LLM
 
-C:\Users\HZAU\Desktop\GENIUS-LLM\mongo_restore_ready\
-└── cotton_gene_db\
-    ├── gene_blast_similarity.bson
-    └── gene_blast_similarity.metadata.json
-```
+# 2. Create a clean environment (Optional but highly recommended)
+conda create -n genius_llm python=3.12 -y
+conda activate genius_llm
 
-### 3.2 Import the Species Database
-Open Windows terminal as administrator, navigate to the directory where the mongorestore command is located, and execute:
-```
-mongorestore --db your_db "your_db_path"
+# 3. Install dependencies first to avoid failures
+pip install -r requirements.txt
+
+# 4. Install GENIUS-LLM in editable mode
+pip install -e .
 ```
 
-For example:
+
+## Quick Start
+GENIUS-LLM simplifies complex bioinformatics pipelines into three standardized commands:
+Step 1: Pre-process Raw Data
+Clean and format your input data for LLM compatibility.
+```bash
+genius-process 
 ```
-mongorestore --db cotton_gene_db "C:\Users\HZAU\Desktop\GENIUS-LLM\mongo_restore_ready\cotton_gene_db"
+Step 2: Import Knowledge Base
+First, populate your local MongoDB with gene annotation data.
+```bash
+genius-import 
+
 ```
-
-### 3.3 Edit the Configuration File
-The config file is located at: `config/data_config.yaml`
-
-In the configuration file, you may need to modify the following parameters:
-- Change `api_key` to your own API key (must be modified)
-- Change `database: "rice_gene_db"` to the database name in MongoDB for the organism you wish to predict
-- The `data_paths` section should be changed to your own raw data paths (used by `01process_data.py` to process raw data into text data)
-- The `data_paths` section also refers to the output file path generated by `01process_data.py` (used by `02import_data.py` to import the text data into MongoDB)
-- The `common` section is for logging options and setting reliable threshold values for blast, coexpression, and TWAS
-
-If you use the provided data, you do not need to modify the "data_paths", "data_imports", and "common" sections.
-
-### 3.4 Input Gene ID for Prediction
-Open `03predict.py` and find:
-```python
-# Step 1: Get the gene ID input from the user
-gene_id = get_gene_input("LOC_Os01g01080")
+Step 3: Execute Prediction
+Run the intelligent prediction engine to infer gene functions.
+```bash
+genius-predict
 ```
 
-Replace "LOC_Os01g01080" with your target gene ID.
+## Data Input Format Specifications
 
-### 3.5 How to Run
-1. First run `01process_data.py`
-2. Then run `02import_data.py`
-3. Finally, run `03predict.py` 
+To ensure the `genius-process` script correctly parses your raw data, please prepare your files according to the required headers and formats listed below.
 
-**Note**: If you are using our provided data and have imported the downloaded data into MongoDB as described in 2.1 and 2.2, you can run `03predict.py` directly.
+| Data Type | Required Headers | File Format | Example Record |
+| :--- | :--- | :--- | :--- |
+| **BLAST** | `query`, `subject`, `similarity`, `alignment_length`, `mismatches`, `gap_openings`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score` | `TXT` (Space-sep, **No Header**) | `GeneA GeneB 85.5 200 2 0 1 200 50 250 1e-50 450` |
+| **Co-expression** | `row`, `col`, `weight` | `TXT` (Space-sep, With Header) | `GeneA GeneB 0.956789` |
+| **Expression** | `GeneId`, `Tissue_1`, `Tissue_2`, ... | `CSV` (Comma-separated) | `GeneA, 12.5, 0.0, 8.45` |
+| **GO** | `GeneID`, `GO`, `Ontology`, `Description` | `CSV` (Comma-separated) | `GeneA, GO:0008150, BP, cell growth` |
+| **KEGG** | `GeneID`, `KEGG`, `KEGG_Description` | `CSV` (Comma-separated) | `GeneA, path:ath00010, Glycolysis` |
+| **TWAS** | `GeneID`, `Phenotype`, `Stage`, `TWAS.Zscore` | `XLSX` (Must be **Sheet1**) | `GeneA, FE, Stage_1, 3.4567` |
+| **Homolog** | `GeneID`, `Homology of AtGi`, `Symbol`, `Full_name`, `Chr.`, `Start`, `End`| `XLSX` | `GeneA, AT1G01010, ABC1, Protein X, Chr1, 100, 500` |
+| **Function Annotation** | `GeneID`,  `Chr.`, `Start`, `End`, `Functio Description` | `XLSX`  | `GeneA, Chr4, 6986838, 6989793, Encodes a cysteine-rich receptor-like protein kinase. The mRNA is cell-to-cell mobile.` |
+---
+
+### 🛠️ Processing Notes
+
+*   **BLAST Header Requirement**: The system reads BLAST files without a header (`header=None`). Ensure the first line of the file contains actual data.
+*   **Co-expression Threshold**: The processor only handles gene pairs with a `weight > 0.9` to ensure the reliability of functional inference.
+*   **Dynamic Expression Columns**: Except for the first column (`GeneId`), all subsequent columns are automatically identified as tissue names.
+*   **TWAS Phenotype Mapping**: The system includes a built-in mapping dictionary that automatically converts abbreviations (e.g., `FE`, `FS`, `FU`, `FL`) into full fiber trait descriptions.
+*   **Homology Data Completion**: If any column in the homology table is missing data, the system will automatically fill the field with `NA`.
