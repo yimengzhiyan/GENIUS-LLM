@@ -1,6 +1,7 @@
 # model/llm_model.py
 
 import yaml
+<<<<<<< HEAD
 import os
 from openai import OpenAI
 from .base_model import BaseModel
@@ -66,6 +67,27 @@ class LLMModel(BaseModel):
 
         try:
             # 第一次请求
+=======
+from openai import OpenAI
+from .base_model import BaseModel
+
+# Read the configuration file
+with open('config/data_config.yaml', 'r') as config_file:
+    config = yaml.safe_load(config_file)
+
+class LLMModel(BaseModel):
+    def __init__(self):
+        self.api_key = config['model']['api_key']
+        self.base_url = config['model']['url']
+        self.model_name = config['model']['model']
+        self.client = OpenAI(api_key=self.api_key, base_url=self.base_url)
+    
+    def call_api(self, prompt):
+        """Call OpenAI API to generate prediction results"""
+        full_content = ""  # Used to concatenate the final result
+
+        try:
+>>>>>>> upstream/main
             response = self.client.chat.completions.create(
                 model=self.model_name,
                 messages=[{"role": "system", "content": "You are a helpful assistant specialized in gene prediction."},
@@ -74,11 +96,17 @@ class LLMModel(BaseModel):
             )
 
             full_content = response.choices[0].message.content
+<<<<<<< HEAD
 
             # 你的原始逻辑：如果因为长度截止，则循环继续
             while response.choices[0].finish_reason == "length":
                 # 使用当前已生成内容作为 Prompt 继续
                 prompt = full_content 
+=======
+            while response.choices[0].finish_reason == "length":
+                # If the result is truncated, continue the request for generation
+                prompt = full_content  # Use the current generated content as the new prompt to continue generating
+>>>>>>> upstream/main
                 response = self.client.chat.completions.create(
                     model=self.model_name,
                     messages=[{"role": "system", "content": "You are a helpful assistant specialized in gene prediction."},
@@ -89,4 +117,8 @@ class LLMModel(BaseModel):
 
             return full_content
         except Exception as e:
+<<<<<<< HEAD
             return f"Error calling API: {str(e)}"
+=======
+            return f"Error calling API: {e}"
+>>>>>>> upstream/main
