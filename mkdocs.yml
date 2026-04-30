@@ -1,59 +1,80 @@
-site_name: GENIUS-LLM Documentation
-#site_url: https://yimengzhiyan.github.io/GENIUS-LLM/
-#repo_url: https://github.com/yimengzhiyan/GENIUS-LLM  # 必须加这一行，edit_uri 才会生效
-repo_url: https://github.com/ZhengJieBioinformatics/GENIUS-LLM
-site_url: https://ZhengJieBioinformatics.github.io/GENIUS-LLM/
-site_author: Jie Zheng
-repo_name: GENIUS-LLM
-edit_uri: edit/main/docs/ # 允许别人点击“编辑”按钮（展现开源精神）
 
-theme:
-  name: material
-  palette:
-    primary: teal  # 这种青绿色看起来很学术
-    accent: indigo
-  features:
-    - navigation.tabs          # 顶部大分类（你已经选了）
-    - content.code.copy    # 增加代码一键复制（对研究人员极其友好）
-    - navigation.sections      # 侧边栏分组显示，结构更清晰
-    - navigation.expand        # 默认展开所有目录（方便审稿人快速点击）
-    - navigation.top           # 快速回到顶部按钮（长文档必备）
-    - navigation.tracking      # 滚动时侧边栏自动跟随当前位置
-    - search.suggest           # 搜索时显示自动补全建议
-    - search.highlight         # 搜索结果关键词高亮
-    - content.code.annotate    # 允许在代码中添加悬浮注释（非常适合解释复杂的 API 调用）
-  # 设置 LOGO 和 Favicon（浏览器标签页的小图标）
-  icon:
-    logo: material/dna # 或者 material/molecule-science
- # favicon: assets/favicon.png #在 docs/ 文件夹下创建一个 assets 文件夹，并放一张名为 favicon.png 的小图标。
+#model:
+#  url: https://api.openai.com/v1 # API URL
+#  api_key:  # replace your api_key
+#  model: gpt-4o # your model name
 
-extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/yimengzhiyan
-    - icon: fontawesome/solid/paper-plane
-      link: mailto:your-email@example.com
+model:
+  url: https://api.deepseek.com
+  api_key:  # replace your api_key
+  model: deepseek-chat
 
-markdown_extensions:
-  - tables          # 开启表格支持（审稿人要求的兼容性矩阵必须用这个）
-  - admonition      # 开启警告框/提示框（!!! note 或 !!! warning）
-  - pymdownx.details # 开启折叠面板（适合放长代码，不占空间）
-  - pymdownx.superfences # 允许在列表里嵌套代码块
-  - pymdownx.magiclink   # 自动把 URL 变成可点击链接
-  - pymdownx.arithmatex:
-      generic: true
-  - attr_list       # 允许给 Markdown 元素加 CSS 样式
+mongodb:
+  uri: "mongodb://localhost:27017/"
+  database: "arabidopsis_gene_db" # Database names for corresponding species (need to be changed)
 
-nav:
-  - Home: index.md
-  - Installation: 01installation.md
-  - Quick Start: 02quickstart.md
-  - Configuration Installation: 03configuration.md
-  - Model Setup: 04models_setup.md
-  - Supported Models list: 05models_list.md
+# for 01process_data.py 
+## Defined the input and output file paths for each data type for data processing operations.
+data_paths:
+  blast:
+    input: "data/yourdata_process/01gene_blast.txt"
+    output: "data/yourdata_process_output/blast_results_text.txt"
+  coexpression:
+    input: "data/yourdata_process/02cultivar"
+    output: "data/yourdata_process_output/coexpression_output.txt"
+  expression:
+    input: "data/yourdata_process/03all_Tissue_mean_TPM.csv"
+    output: "data/yourdata_process_output/expression_output.txt"
+  homolog:
+    input: "data/yourdata_process/04multi_gene_data.xlsx"
+    output: "data/yourdata_process_output/homolog_output.txt"
+  twas:
+    input: "data/yourdata_process/05TWAS_out_240925.xlsx"
+    output: "data/yourdata_process_output/twas_output.txt"
+  kegg:
+    input: "data/yourdata_process/06KEGG.csv"
+    output: "data/yourdata_process_output/KEGG_descriptions.txt"
+  go:
+    input: "data/yourdata_process/07GO.csv"
+    output: "data/yourdata_process_output/GO_descriptions.txt"
+
+# for 02import_data.py
+  ## Defined the various data sources to be imported into the MongoDB database and the target collections.
+  ## Currently supports TXT and CSV files
+data_imports:
+  blast:
+    input_path: "data/yourdata_process_output/blast_results_text.txt"  # Read the gene alignment data from the file "data/test_import/01gene_blast_cleaned.txt" and import it into the MongoDB collection.
+    collection: "gene_blast_similarity"
+  coexpression:
+    input_path: "data/yourdata_process_output/coexpression_output.txt"
+    collection: "gene_coexpression"
+  expression:
+    input_path: "data/yourdata_process_output/expression_output.txt"
+    collection: "gene_expression"
+  homolog:
+    input_path: "data/yourdata_process_output/homolog_output.txt"
+    collection: "homologous_genes"
+  twas:
+    input_path: "data/yourdata_process_output/twas_output.txt"
+    collection: "gene_trait_twas"
+  kegg:
+    input_path: "data/yourdata_process_output/KEGG_descriptions.txt" # Import the KEGG database
+    collection: "kegg_pathways"
+  go:
+    input_path: "data/yourdata_process_output/GO_descriptions.txt" # Import the GO database
+    collection: "go_terms"
 
 
 
+
+common:
+  log_path: "logs/"
+  predict_result_output_path: "predict_results"
+  threshold:
+    blast:
+      similarity: 0.9
+      e_value: 1e-5
+    coexpression:
+      weight: 0.9
+    twas:
+      zscore: 2.0
