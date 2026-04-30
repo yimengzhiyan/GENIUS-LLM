@@ -36,6 +36,15 @@ venv/
 .venv/
 env/
 ENV/
+*.exe
+.pyc
+GENIUS_LLM/Scripts/*.exe
+GENIUS_LLM/Scripts/*.bat
+GENIUS_LLM/Scripts/Activate.ps1
+GENIUS_LLM/Scripts/activate
+GENIUS_LLM/Scripts/deactivate.bat
+GENIUS_LLM/Scripts/pip*.exe
+GENIUS_LLM/Scripts/python*.dll
 
 # --- 4. Execution Artifacts & Large Data (Prevent Environment Pollution) ---
 # Reviewers should generate these files in their own environments rather than downloading them.
