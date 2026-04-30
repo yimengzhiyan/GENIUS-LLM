@@ -84,8 +84,8 @@ To ensure the `genius-process` script correctly parses your raw data, please pre
 | **GO** | `GeneID`, `GO`, `Ontology`, `Description` | `CSV` (Comma-separated) | `GeneA, GO:0008150, BP, cell growth` |
 | **KEGG** | `GeneID`, `KEGG`, `KEGG_Description` | `CSV` (Comma-separated) | `GeneA, path:ath00010, Glycolysis` |
 | **TWAS** | `GeneID`, `Phenotype`, `Stage`, `TWAS.Zscore` | `XLSX` (Must be **Sheet1**) | `GeneA, FE, Stage_1, 3.4567` |
-| **Homolog** | `GeneID`, `Homology of AtGi`, `Symbol`, `Full_name`, `Chr.`, `Start`, `End`, `Function description` | `XLSX` | `GeneA, AT1G01010, ABC1, Protein X, Chr1, 100, 500, Kinase` |
-
+| **Homolog** | `GeneID`, `Homology of AtGi`, `Symbol`, `Full_name`, `Chr.`, `Start`, `End`| `XLSX` | `GeneA, AT1G01010, ABC1, Protein X, Chr1, 100, 500` |
+| **Function Annotation** | `GeneID`,  `Chr.`, `Start`, `End`, `Functio Description` | `XLSX`  | `GeneA, Chr4, 6986838, 6989793, Encodes a cysteine-rich receptor-like protein kinase. The mRNA is cell-to-cell mobile.` |
 ---
 
 ### 🛠️ Processing Notes
