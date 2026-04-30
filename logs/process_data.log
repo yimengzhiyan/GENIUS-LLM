@@ -1,7 +1,0 @@
-2025-06-09 10:29:24,270 - root - INFO - Successfully processed blast data
-2025-06-09 10:29:49,548 - root - INFO - Successfully processed coexpression data
-2025-06-09 10:29:57,864 - root - INFO - Successfully processed expression data
-2025-06-09 10:30:01,492 - root - INFO - Successfully processed homolog data
-2025-06-09 10:30:02,019 - root - INFO - Successfully processed twas data
-2025-06-09 10:30:06,024 - root - INFO - Successfully processed kegg data
-2025-06-09 10:30:16,542 - root - INFO - Successfully processed go data
