@@ -3,7 +3,7 @@
  Based on the configuration defined in config.yaml, this section details the execution environment, Large Language Model (LLM) parameters, and the bioinformatic filtering criteria used for gene function inference.
 
 ##1. RAG Backend: MongoDB Indexing
-The platform utilizes a Retrieval-Augmented Generation (RAG) architecture. The LLM does not rely solely on its internal training data but queries a local MongoDB instance to retrieve biologically grounded evidence.
+The platform utilizes a Retrieval-Augmented Generation (RAG) inspired architecture. The LLM does not rely solely on its internal training data but queries a local MongoDB instance to retrieve biologically grounded evidence.
 
 Database: arabidopsis_gene_db (Current focus: Arabidopsis thaliana)
 

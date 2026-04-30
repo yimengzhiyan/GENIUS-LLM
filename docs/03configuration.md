@@ -23,7 +23,7 @@ Edit config/data_config.yaml to suit your research:
 ### ·Model Settings:
 ```yaml
 api_key: Your LLM service provider key.
-url: API endpoint (Default: DeepSeek).
+url: API endpoint (Default: gpt-4o).
 model: Model ID (e.g., deepseek-chat, gpt-4o).
 ```
 

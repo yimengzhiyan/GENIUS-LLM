@@ -8,15 +8,13 @@
 
 The following table explicitly lists the models verified with the current release of GENIUS-LLM. Compatibility is achieved by simply updating the `url` and `model` fields in `data_config.yaml`.
 
-| Model Category | Representative Models | Protocol Status | Support Level |
-| :--- | :--- | :--- | :--- |
-| **OpenAI Series** | GPT-4o, GPT-4-turbo, GPT-3.5 | Native | ✅ Verified |
-| **DeepSeek Series** | DeepSeek-V3, DeepSeek-Chat | OpenAI-Compatible | ✅ Verified |
-| **Local LLMs** | Llama 3, Qwen, Mistral | via vLLM / Ollama | ✅ Verified |
-| **National LLMs** | Moonshot (Kimi), Zhipu AI | OpenAI-Compatible | ✅ Verified |
-| **Other Protocols**| Claude, Gemini | Native SDK | 🔄 via Proxy* |
+| Model Category | Representative Models | Protocol Status |
+| :--- | :--- | :--- |
+| **Official OpenAI Models** | GPT-4o, GPT-4 Turbo, GPT-3.5 | Native Support |
+| **OpenAI-Compatible Models** | DeepSeek (V3/Chat), Qwen, Moonshot (Kimi), Zhipu AI, Llama 3 (via vLLM) | Universal OpenAI-Style Protocol |
 
-> **Note on Claude/Gemini**: To maintain a lightweight codebase without dependency bloat, native SDKs for Anthropic/Google are not included. However, users can access these models via API gateways (e.g., **One-API** or **LiteLLM**) that convert their requests into the standard OpenAI format.
+---
+> By adhering to the **OpenAI-standardized** API format, **GENIUS-LLM** provides seamless integration across a wide range of providers. Users can switch between high-performance proprietary models and cost-effective local or regional alternatives (like **DeepSeek-V3**) without changing a single line of core code.
 
 ---
 
@@ -40,10 +38,10 @@ The `openai` Python client has evolved into a standardized wrapper for **RESTful
 
 To switch from the default configuration to a different provider, modify your `config/data_config.yaml` as follows:
 
-### Example: Switching to a Local Llama-3 (via vLLM)
+### Example: Switching to a  (via vLLM)
 ```yaml
 model:
-  api_key: "not-needed-for-local"
-  url: "http://localhost:8000/v1"
-  model: "meta-llama/Meta-Llama-3-8B-Instruct"
+    url: https://api.openai.com/v1 # Here is the base URL for the API; you can modify it according to your specific LLM configuration.
+    api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # Replace your api_key
+    model: GPT-4o #The model you want to use 
 ```

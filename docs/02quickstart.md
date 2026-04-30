@@ -212,40 +212,71 @@ genius-predict AT1G01010
 ## 4. Expected Output
 After running genius-predict, you should see logs indicating the progress. The final results will be saved in the directory defined in your config (default: `predict_results/`).
 
-## 5. Sample Log Output (DeepSeek-V3 Example)
+## 5. Sample Log Output (GPT-4o Example)
 ```Plaintext
-(genius_llm) [zhengjie@localhost GENIUS-LLM]$ genius-predict AT1G03000
+(genius_llm) [zhengjie@localhost rice_gene_database]$ genius-predict LOC_Os01g01030
 
 --- GENIUS-LLM Prediction System ---
-2026-04-30 12:25:44,855 - INFO - Starting prediction for Gene ID: AT1G03000
-2026-04-30 12:25:45,164 - INFO - Prompt successfully generated.
-2026-04-30 12:25:45,763 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
-2026-04-30 12:25:51,167 - INFO - Model response received.
+2026-04-30 23:10:04,739 - INFO - Starting prediction for Gene ID: LOC_Os01g01030
+2026-04-30 23:10:06,107 - INFO - Prompt successfully generated.
+2026-04-30 23:10:06,847 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-30 23:10:29,468 - INFO - Model response received.
 
 === Prediction Result ===
- Based on a comprehensive analysis of all available datasets for the target gene 'AT1G03000', here is a detailed prediction of its biological function.
+ Based on the provided data for the target gene 'LOC_Os01g01030', here is a detailed prediction of its biological function, associated processes, and relevant traits.
 
-### Final Analysis for Gene 'AT1G03000'
+### **1. Predicted Function**
+LOC_Os01g01030 is predicted to encode a copper-binding oxidoreductase enzyme involved in cell wall remodeling and cell growth, specifically tip growth. It is likely anchored to the plasma membrane (via a GPI-anchor) and plays a critical role in the development of reproductive tissues, particularly during pollen tube growth and panicle development, and also under heat stress conditions.
 
-#### 1. Predicted Function
-Due to the complete absence of data from all seven provided sources (BLAST, Co-expression, Expression, Homologous genes, TWAS, GO, and KEGG), the biological function of gene 'AT1G03000' cannot be predicted based on these datasets alone. The gene is likely either conditionally expressed (e.g., only under specific stress or developmental stages not tested in the provided data), a non-coding RNA with a regulatory function, or a currently uncharacterized locus.
+### **2. Supporting Evidence**
 
-#### 2. Supporting Evidence
-Since no data was found in any category, there is no evidence to support a specific functional prediction.
+#### **Gene Ontology (GO) Data (High Confidence)**
+The GO data provides the most direct evidence for the gene's function.
+- **Molecular Function**: The gene is strongly associated with `GO:0016491 (oxidoreductase activity)` and `GO:0005507 (copper ion binding)`. This combination is a hallmark of a specific class of enzymes known as **cupredoxins** (e.g., laccases, ascorbate oxidases, or plantacyanins), which often function in the apoplast or cell wall.
+- **Biological Process**: Crucially, the gene is associated with `GO:0009932 (cell tip growth)` and `GO:0009826 (unidimensional cell growth)`. In plants, cell tip growth is a specialized process primarily used by **pollen tubes** and root hairs.
+- **Cellular Component**: The gene is localized to the `GO:0048046 (apoplast)`, `GO:0005618 (cell wall)`, `GO:0005886 (plasma membrane)`, `GO:0046658 (anchored component of plasma membrane)`, and `GO:0031225 (anchored component of membrane)`. This suggests the protein is secreted and attached to the outer leaflet of the plasma membrane via a glycosylphosphatidylinositol (GPI) anchor. This is a common location for cell wall remodeling enzymes.
 
-#### 3. Potential Traits
-Without any expression, TWAS, or homology data, no specific traits can be associated with gene 'AT1G03000'. The gene's influence on any trait is unknown.
+#### **Gene Expression Data (Medium Confidence)**
+The expression data strongly corroborates the GO-based hypothesis of a role in reproductive development and stress response.
+- **High Expression in Reproductive Tissues**: The highest expression levels are observed in **'Panicles, young'** (24.73), **'Inflorescence'** (17.57), and **'Glume'** (12.89). This indicates a specific and critical role during the early stages of reproductive organ development.
+- **Expression in Anthers vs. Pistils**: There is high expression in **'Anther'** (8.72) but very low expression in **'Anthers'** (0.27). This discrepancy (possibly different developmental stages) suggests a dynamic role at a specific point in anther development. Expression in **'Pistils'** (6.00) is also moderate, consistent with a role in the female reproductive tract.
+- **Upregulation under Heat Stress**: Expression is significantly upregulated under **'Seedling_Heat_Stress'** (10.47) compared to the control (3.17), suggesting the gene's product may be involved in heat stress tolerance, perhaps by maintaining cell wall integrity.
+- **Downregulation under Stress Conditions**: Expression is strongly downregulated under **'Seedling_Cold'** (0.53), **'Seedling_Salt_stress_24_hr'** (0.12), and **'Leaf_seedling,Cold_Stress_24_hr'** (0.54), indicating its expression is suppressed under non-heat-related abiotic stresses.
 
-#### 4. Upregulation/Downregulation Analysis
-No expression data is available. Therefore, an analysis of upregulation or downregulation in specific tissues or conditions is not possible.
+#### **Co-expression Data (Supporting Confidence)**
+The co-expression partners, while not explicitly annotated here, are consistent with the predicted function. The high co-expression weight (all >0.96) with these genes suggests they are part of a tightly regulated module. For example, `LOC_Os05g51060`, `LOC_Os09g30010`, and `LOC_Os02g44890` are often associated with cell wall metabolism or stress signaling in other plants, supporting the idea that `LOC_Os01g01030` is a central component of a cell wall remodeling and stress response network.
 
-#### 5. Step-by-Step Reasoning
-1.  **Firstly**, the highest priority data source (TWAS) provided no associations. This means there is no direct statistical link between this gene and any specific trait or phenotype in the provided datasets.
-2.  **Furthermore**, the medium-high confidence data (Homologous Gene Data) and medium confidence data (Expression Data) are both empty. This failure to find conserved functions or tissue-specific activity severely limits the ability to infer a role.
-3.  **Lastly**, all supporting and foundational data sources (BLAST, Co-expression, GO, and KEGG) are also unavailable. The complete absence of information across all data types prevents any meaningful functional inference. The gene remains uncharacterized within the scope of the provided datasets.
-2026-04-30 12:25:51,167 - INFO - Task completed successfully.
-2026-04-30 12:25:51,167 - INFO - Prediction result successfully saved to /home/zhengjie/test_genius/GENIUS-LLM/predict_results/AT1G03000_prediction.txt
-```
+### **3. Potential Traits**
+Based on the integrated evidence, `LOC_Os01g01030` may influence the following traits:
+
+1.  **Panicle and Grain Development**: Its exceptionally high expression in young panicles and inflorescences suggests a vital role in panicle architecture, spikelet fertility, and grain development. A defect could lead to reduced grain number or size.
+2.  **Pollen Tube Growth and Fertility**: The GO term association with `cell tip growth` and expression in anthers and pistils strongly points to a role in pollen tube germination and growth. This is essential for successful fertilization. Downregulation could lead to reduced male fertility.
+3.  **Heat Stress Tolerance**: Upregulation under heat stress indicates the gene's product might help rice plants cope with high temperatures, a major environmental constraint, especially during the sensitive reproductive stage.
+
+### **4. Upregulation/Downregulation Analysis**
+
+| Condition | Expression Level | Trend | Potential Biological Role |
+| :--- | :--- | :--- | :--- |
+| **Panicles, young** | 24.73 | **Strongly Upregulated** | Active involvement in early panicle and floret development. |
+| **Seedling_Heat_Stress** | 10.47 | **Upregulated** (vs. Control 3.17) | Active role in heat stress response, possibly repairing or remodeling the cell wall. |
+| **Infloresence** | 17.57 | **Strongly Upregulated** | Essential role in the development of the entire inflorescence. |
+| **Seedling_Cold** | 0.53 | **Downregulated** (vs. Control 3.17) | Gene activity is suppressed, as cell wall remodeling for tip growth is not a priority under cold stress. |
+| **Seedling_Salt_stress_24_hr** | 0.12 | **Strongly Downregulated** | Expression is shut down, likely to conserve energy under severe osmotic stress. |
+| **Leaf / Stem** | 0.27 / 0.81 | **Low / Baseline** | Protein function is not needed in these tissues under standard conditions. |
+
+### **5. Step-by-Step Reasoning**
+
+1.  **Firstly**, the highest confidence data, the **Gene Ontology (GO)** information, provided the core hypothesis. The combination of `oxidoreductase activity`, `copper ion binding`, and `cell tip growth` is a fingerprint for a **cupredoxin-like enzyme** crucial for pollen tube growth. The `anchored component of plasma membrane` and `apoplast` localizations suggest it is a secreted, GPI-anchored protein that acts on the cell wall from the outside.
+
+2.  **Secondly**, this hypothesis was strongly validated by the **Gene Expression Data**. The highest expression by a large margin was found in **'Panicles, young'** and **'Inflorescence'**, which are the very tissues where massive cell tip growth (pollen formation and development) and cell wall expansion are happening.
+
+3.  **Furthermore**, the expression pattern under stress provides further nuance. Upregulation under **Heat Stress** suggests this enzyme's role in cell wall remodeling is also critical for thermotolerance. Conversely, its downregulation under cold and salt stress implies its expression is tightly regulated and specifically tied to growing tissues or heat stress, rather than a general stress protein.
+
+4.  **Lastly**, while no BLAST or KEGG data was available, the **Co-expression Data** serves as supporting evidence. The extremely high correlation (>0.96) with ten other genes confirms that `LOC_Os01g01030` is part of a tightly co-expressed genetic module, likely dedicated to a specific process (e.g., panicle development). This reinforces that the gene is not functionally isolated but a core part of a larger biological pathway, as suggested by the GO and expression data.
+
+**Conclusion**: The gene `LOC_Os01g01030` is a copper-binding oxidoreductase (likely a plantacyanin or laccase-like protein) anchored to the plasma membrane in the apoplast. Its primary function is to mediate cell wall remodeling during **cell tip growth in reproductive tissues** (pollen tubes, developing panicles) and is also involved in the **response to heat stress**.
+2026-04-30 23:10:29,469 - INFO - Task completed successfully.
+2026-04-30 23:10:29,469 - INFO - Prediction result successfully saved to /home/zhengjie/test_genius/GENIUS-LLM/predict_results/LOC_Os01g01030_prediction.txt```
 
 ## 6.Data Input Format Specifications
 
